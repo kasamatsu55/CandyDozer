@@ -8,6 +8,7 @@ public class Shooter : MonoBehaviour
     const int RecoverySeconds = 3;
 
     int shotPower = MaxShotPower;
+    AudioSource shotoSound;
 
     public GameObject[] candyPrefabs;
     public Transform candyParentTransform;
@@ -15,7 +16,12 @@ public class Shooter : MonoBehaviour
     public float shotForce;
     public float shotTorque;
     public float baseWidth;
-   
+
+    void Start()
+    {
+        shotoSound = GetComponent<AudioSource>();
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -77,6 +83,9 @@ public class Shooter : MonoBehaviour
         candyManager.ConsumeCandy();
         //ShotPowerを消費
         ConsumePower();
+
+        //
+        shotoSound.Play();
     }
 
     void OnGUI()
